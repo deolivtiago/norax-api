@@ -1,12 +1,12 @@
-defmodule NoraxCoreWeb do
+defmodule NoraxWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, components, channels, and so on.
 
   This can be used in your application as:
 
-      use NoraxCoreWeb, :controller
-      use NoraxCoreWeb, :html
+      use NoraxWeb, :controller
+      use NoraxWeb, :html
 
   The definitions below will be executed for every controller,
   component, etc, so keep them short and clean, focused
@@ -39,10 +39,10 @@ defmodule NoraxCoreWeb do
     quote do
       use Phoenix.Controller,
         formats: [:html, :json],
-        layouts: [html: NoraxCoreWeb.Layouts]
+        layouts: [html: NoraxWeb.Layouts]
 
       import Plug.Conn
-      import NoraxCoreWeb.Gettext
+      import NoraxWeb.Gettext
 
       unquote(verified_routes())
     end
@@ -51,9 +51,9 @@ defmodule NoraxCoreWeb do
   def verified_routes do
     quote do
       use Phoenix.VerifiedRoutes,
-        endpoint: NoraxCoreWeb.Endpoint,
-        router: NoraxCoreWeb.Router,
-        statics: NoraxCoreWeb.static_paths()
+        endpoint: NoraxWeb.Endpoint,
+        router: NoraxWeb.Router,
+        statics: NoraxWeb.static_paths()
     end
   end
 

@@ -1,11 +1,11 @@
-defmodule NoraxCoreWeb.Gettext do
+defmodule NoraxWeb.Gettext do
   @moduledoc """
   A module providing Internationalization with a gettext-based API.
 
   By using [Gettext](https://hexdocs.pm/gettext),
   your module gains a set of macros for translations, for example:
 
-      import NoraxCoreWeb.Gettext
+      import NoraxWeb.Gettext
 
       # Simple translation
       gettext("Here is the string to translate")

@@ -13,11 +13,11 @@ config :norax,
   generators: [timestamp_type: :utc_datetime, binary_id: true]
 
 # Configures the endpoint
-config :norax, NoraxCoreWeb.Endpoint,
+config :norax, NoraxWeb.Endpoint,
   url: [host: "localhost"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
-    formats: [json: NoraxCoreWeb.ErrorJSON],
+    formats: [json: NoraxWeb.ErrorJSON],
     layout: false
   ],
   pubsub_server: NoraxCore.PubSub,

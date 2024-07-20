@@ -8,7 +8,7 @@ defmodule NoraxCore.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      NoraxCoreWeb.Telemetry,
+      NoraxWeb.Telemetry,
       NoraxCore.Repo,
       {DNSCluster, query: Application.get_env(:norax, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: NoraxCore.PubSub},
@@ -17,7 +17,7 @@ defmodule NoraxCore.Application do
       # Start a worker by calling: NoraxCore.Worker.start_link(arg)
       # {NoraxCore.Worker, arg},
       # Start to serve requests, typically the last entry
-      NoraxCoreWeb.Endpoint
+      NoraxWeb.Endpoint
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
@@ -30,7 +30,7 @@ defmodule NoraxCore.Application do
   # whenever the application is updated.
   @impl true
   def config_change(changed, _new, removed) do
-    NoraxCoreWeb.Endpoint.config_change(changed, removed)
+    NoraxWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 end

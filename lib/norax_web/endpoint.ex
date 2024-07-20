@@ -1,4 +1,4 @@
-defmodule NoraxCoreWeb.Endpoint do
+defmodule NoraxWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :norax
 
   # The session will be stored in the cookie and signed,
@@ -23,7 +23,7 @@ defmodule NoraxCoreWeb.Endpoint do
     at: "/",
     from: :norax,
     gzip: false,
-    only: NoraxCoreWeb.static_paths()
+    only: NoraxWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
@@ -43,5 +43,5 @@ defmodule NoraxCoreWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug NoraxCoreWeb.Router
+  plug NoraxWeb.Router
 end

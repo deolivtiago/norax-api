@@ -15,7 +15,7 @@ config :norax, NoraxCore.Repo,
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :norax, NoraxCoreWeb.Endpoint,
+config :norax, NoraxWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
   secret_key_base: "rBBzW/b8FqXxUovQaHTLnC1BrsdLbr3l8bIz6iuVjUoQ04PBmW/+XjN8ljsmaNKz",
   server: false
