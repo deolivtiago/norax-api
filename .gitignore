@@ -28,3 +28,6 @@ norax-*.tar
 # Ignore editor files
 /.vscode/
 /.elixir_ls/
+
+# Ignore env files
+/.env
