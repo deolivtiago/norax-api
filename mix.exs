@@ -9,8 +9,13 @@ defmodule NoraxCore.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       preferred_cli_env: [
-        ci: :test
+        ci: :test,
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
       ],
+      test_coverage: [tool: ExCoveralls],
       aliases: aliases(),
       deps: deps()
     ]
@@ -47,7 +52,14 @@ defmodule NoraxCore.MixProject do
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.5"},
-      {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:excoveralls, "~> 0.18", only: [:dev, :test], runtime: false},
+      {:tz, "~> 0.27"},
+      {:goal, "~> 1.0"},
+      {:argon2_elixir, "~> 4.0"},
+      {:nimble_totp, "~> 1.0"},
+      {:jose, "~> 1.11"},
+      {:faker, "~> 0.18", only: [:dev, :test], runtime: false}
     ]
   end
 
@@ -68,7 +80,7 @@ defmodule NoraxCore.MixProject do
         "compile --warnings-as-errors",
         "format --check-formatted",
         "credo --strict",
-        "test"
+        "coveralls --warnings-as-errors"
       ]
     ]
   end
