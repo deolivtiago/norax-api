@@ -9,6 +9,11 @@ defmodule NoraxWeb.Router do
     pipe_through :api
 
     resources "/users", UserController, except: [:new, :edit]
+
+    post "/signup", AuthController, :signup
+    post "/signin", AuthController, :signin
+    post "/codes/send", AuthController, :send_code
+    get "/codes/revoke", AuthController, :revoke_code
   end
 
   # Enable Swoosh mailbox preview in development

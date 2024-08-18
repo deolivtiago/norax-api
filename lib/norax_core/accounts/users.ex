@@ -21,28 +21,28 @@ defmodule NoraxCore.Accounts.Users do
 
   ## Examples
 
-      iex> get_user(params)
+      iex> get_user(id)
       {:ok, %User{}}
 
-      iex> get_user(bad_params)
+      iex> get_user(bad_id)
       {:error, %Ecto.Changeset{}}
 
   """
-  defdelegate get_user(params), to: User.Get, as: :call
+  defdelegate get_user(id), to: User.Get, as: :call
 
   @doc """
   Creates an user
 
   ## Examples
 
-      iex> create_user(params)
+      iex> create_user(attrs)
       {:ok, %User{}}
 
-      iex> create_user(bad_params)
+      iex> create_user(bad_attrs)
       {:error, %Ecto.Changeset{}}
 
   """
-  defdelegate create_user(params), to: User.Create, as: :call
+  defdelegate create_user(attrs), to: User.Create, as: :call
 
   @doc """
   Updates an user
@@ -52,11 +52,11 @@ defmodule NoraxCore.Accounts.Users do
       iex> update_user(user, params)
       {:ok, %User{}}
 
-      iex> update_user(user, bad_params)
+      iex> update_user(user, bad_attrs)
       {:error, %Ecto.Changeset{}}
 
   """
-  defdelegate update_user(user, params), to: User.Update, as: :call
+  defdelegate update_user(user, attrs), to: User.Update, as: :call
 
   @doc """
   Deletes an user
@@ -77,12 +77,12 @@ defmodule NoraxCore.Accounts.Users do
 
   ## Examples
 
-      iex> authenticate_user(params)
+      iex> authenticate_user(attrs)
       {:ok, %User{}}
 
-      iex> authenticate_user(bad_params)
+      iex> authenticate_user(bad_attrs)
       {:error, %Ecto.Changeset{}}
 
   """
-  defdelegate authenticate_user(params), to: User.Authenticate, as: :call
+  defdelegate authenticate_user(attrs), to: User.Authenticate, as: :call
 end
