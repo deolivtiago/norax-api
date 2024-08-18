@@ -7,6 +7,7 @@ defmodule NoraxWeb do
 
       use NoraxWeb, :controller
       use NoraxWeb, :html
+      use NoraxWeb, :params
 
   The definitions below will be executed for every controller,
   component, etc, so keep them short and clean, focused
@@ -54,6 +55,12 @@ defmodule NoraxWeb do
         endpoint: NoraxWeb.Endpoint,
         router: NoraxWeb.Router,
         statics: NoraxWeb.static_paths()
+    end
+  end
+
+  def params do
+    quote do
+      use Goal
     end
   end
 
