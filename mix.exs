@@ -53,7 +53,13 @@ defmodule NoraxCore.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.5"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
-      {:excoveralls, "~> 0.18", only: [:dev, :test], runtime: false}
+      {:excoveralls, "~> 0.18", only: [:dev, :test], runtime: false},
+      {:tz, "~> 0.27"},
+      {:goal, "~> 1.0"},
+      {:argon2_elixir, "~> 4.0"},
+      {:nimble_totp, "~> 1.0"},
+      {:jose, "~> 1.11"},
+      {:faker, "~> 0.18", only: [:dev, :test], runtime: false}
     ]
   end
 
