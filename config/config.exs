@@ -32,6 +32,14 @@ config :norax, NoraxWeb.Endpoint,
 # at the `config/runtime.exs`.
 config :norax, NoraxCore.Mailer, adapter: Swoosh.Adapters.Local
 
+# Configures the JWT secret key
+config :norax, NoraxCore.JsonWebToken,
+  jwt_secret_key:
+    System.get_env(
+      "JWT_SECRET_KEY",
+      "f/Rmaq+yCRMVMt8wVYL2ZdKenpXC5A8sO5haQ4JK7XptlTA8E68crT5gwbmKzIww"
+    )
+
 # Configures the database timezone
 config :elixir, :time_zone_database, Tz.TimeZoneDatabase
 
