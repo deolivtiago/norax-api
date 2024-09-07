@@ -19,7 +19,7 @@ defmodule NoraxCore.Accounts.Users.User do
     field :otp_secret, :binary, autogenerate: {NimbleTOTP, :secret, []}, redact: true
     field :verified?, :boolean, source: :is_verified, default: false
 
-    field :code, :string, virtual: true, redact: true
+    field :code, :string, virtual: true
 
     timestamps(type: :utc_datetime)
   end

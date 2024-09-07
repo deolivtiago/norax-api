@@ -91,12 +91,26 @@ defmodule NoraxCore.Accounts.Users do
 
   ## Examples
 
-      iex> verify_user(user, code)
+      iex> verify_user(user)
       {:ok, %User{}}
 
-      iex> verify_user(user, bad_code)
+      iex> verify_user(bad_user)
       {:error, %Ecto.Changeset{}}
 
   """
-  defdelegate verify_user(user, code), to: Services.VerifyUser, as: :call
+  defdelegate verify_user(user), to: Services.VerifyUser, as: :call
+
+  @doc """
+  Confirms an user
+
+  ## Examples
+
+      iex> confirm_user(user, code)
+      {:ok, %User{}}
+
+      iex> confirm_user(user, bad_code)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  defdelegate confirm_user(user, code), to: Services.ConfirmUser, as: :call
 end

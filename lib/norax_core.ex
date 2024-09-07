@@ -30,8 +30,13 @@ defmodule NoraxCore do
     quote do
       import Ecto.Changeset
 
-      defp cast(schema, params) when is_non_struct_map(schema) or is_list(schema) do
-        %{Goal.build_changeset(schema, params) | valid?: false}
+      defp cast_params(params, opts \\ []) when is_non_struct_map(params) do
+        default_schema = Map.from_keys(Map.keys(params), type: :map)
+
+        opts
+        |> Keyword.get(:as, default_schema)
+        |> Goal.build_changeset(params)
+        |> Map.put(:valid?, false)
       end
     end
   end
