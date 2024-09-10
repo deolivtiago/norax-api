@@ -7,6 +7,8 @@ defmodule NoraxWeb.Router do
 
   scope "/api", NoraxWeb do
     pipe_through :api
+
+    resources "/users", UserController, except: [:new, :edit]
   end
 
   # Enable Swoosh mailbox preview in development
