@@ -6,10 +6,8 @@ defmodule NoraxCore.Accounts.Users.Services.AuthenticateUser do
   alias NoraxCore.Repo
 
   @doc false
-  def call(%{email: email, password: password}) do
-    user = Repo.get_by(User, email: email)
-
-    with {:ok, %User{verified?: false}} <- verify_credentials(user, password) do
+  def call(credentials) when is_map(credentials) do
+    with {:ok, %User{verified?: false} = user} <- verify_credentials(credentials) do
       user
       |> change()
       |> add_error(:email, "must be verified")
@@ -17,13 +15,10 @@ defmodule NoraxCore.Accounts.Users.Services.AuthenticateUser do
     end
   end
 
-  defp verify_credentials(user, password) do
-    valid_credentials? =
-      if is_nil(user),
-        do: Argon2.no_user_verify(),
-        else: Argon2.verify_pass(password, user.password)
+  defp verify_credentials(%{email: email, password: password}) do
+    user = Repo.get_by(User, email: email)
 
-    if valid_credentials? do
+    if valid_password?(user, password) do
       {:ok, user}
     else
       User.changeset()
@@ -33,4 +28,7 @@ defmodule NoraxCore.Accounts.Users.Services.AuthenticateUser do
       |> then(&{:error, &1})
     end
   end
+
+  defp valid_password?(%User{password: hash}, password), do: Argon2.verify_pass(password, hash)
+  defp valid_password?(nil, _password), do: Argon2.no_user_verify()
 end

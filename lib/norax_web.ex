@@ -60,7 +60,23 @@ defmodule NoraxWeb do
 
   def params do
     quote do
-      use Goal
+      import Goal
+
+      @doc """
+      Returns the validated parameters or an error changeset.
+      """
+      def validate(name, params, opts \\ []) when is_map(params) and is_list(opts) do
+        key = Keyword.get(opts, :into)
+
+        with {:ok, params} <- validate_params(schema(name), params, opts) do
+          if is_nil(key) or not is_atom(key),
+            do: {:ok, params},
+            else:
+              Map.new()
+              |> Map.put(key, params)
+              |> then(&{:ok, &1})
+        end
+      end
     end
   end
 

@@ -12,7 +12,7 @@ defmodule NoraxWeb.Router do
 
     post "/auth/signup", AuthController, :signup
     post "/auth/signin", AuthController, :signin
-    post "/auth/verify", AuthController, :verify
+    get "/auth/verify", AuthController, :verify
     post "/auth/confirm", AuthController, :confirm
     delete "/auth/signout", AuthController, :signout
   end

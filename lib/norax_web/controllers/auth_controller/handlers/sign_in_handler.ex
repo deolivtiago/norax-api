@@ -6,13 +6,7 @@ defmodule NoraxWeb.AuthController.SignInHandler do
   alias NoraxCore.Accounts.Users
   alias NoraxWeb.AuthController.Params
 
-  def validate_params(params) do
-    with {:ok, attrs} <- Params.validate(:signin, params) do
-      Map.new()
-      |> Map.put(:attrs, attrs)
-      |> then(&{:ok, &1})
-    end
-  end
+  def validate_params(params), do: Params.validate(:signin, params, into: :attrs)
 
   def authenticate_user(user_attrs), do: Users.authenticate_user(user_attrs)
 

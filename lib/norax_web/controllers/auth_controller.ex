@@ -16,7 +16,6 @@ defmodule NoraxWeb.AuthController do
          {:ok, user} <- SignUpHandler.create_user(attrs) do
       conn
       |> put_status(:created)
-      |> put_resp_header("location", ~p"/api/users/#{user}")
       |> render(:show, user: user)
     end
   end
@@ -28,7 +27,6 @@ defmodule NoraxWeb.AuthController do
          {:ok, auth} <- SignInHandler.generate_auth_tokens(user) do
       conn
       |> put_status(:ok)
-      |> put_resp_header("location", ~p"/api/users/#{user}")
       |> render(:show, auth: auth)
     end
   end
